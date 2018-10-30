@@ -1,0 +1,370 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A469EBCD2186EAA900174EAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBC62186EAA900174EAD /* AppDelegate.m */; };
+		A469EBCE2186EAA900174EAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A469EBC72186EAA900174EAD /* LaunchScreen.storyboard */; };
+		A469EBCF2186EAA900174EAD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A469EBC92186EAA900174EAD /* Info.plist */; };
+		A469EBD02186EAA900174EAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBCA2186EAA900174EAD /* main.m */; };
+		A469EBD12186EAA900174EAD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBCC2186EAA900174EAD /* ViewController.m */; };
+		A469EBD72186EBF200174EAD /* DDYCamera.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A469EBD22186EBF200174EAD /* DDYCamera.bundle */; };
+		A469EBD82186EBF200174EAD /* DDYCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBD42186EBF200174EAD /* DDYCameraController.m */; };
+		A469EBD92186EBF200174EAD /* DDYCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBD62186EBF200174EAD /* DDYCameraManager.m */; };
+		A469EBDC2186F43600174EAD /* DDYCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBDA2186F43600174EAD /* DDYCameraView.m */; };
+		A469EBE22187E98400174EAD /* NSBundle+DDYCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBE12187E98400174EAD /* NSBundle+DDYCamera.m */; };
+		A469EBE52187F16900174EAD /* DDYVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBE32187F16900174EAD /* DDYVideoPlayer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A469EBAE2186E73200174EAD /* DDYCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDYCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A469EBC52186EAA900174EAD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A469EBC62186EAA900174EAD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A469EBC82186EAA900174EAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A469EBC92186EAA900174EAD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A469EBCA2186EAA900174EAD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A469EBCB2186EAA900174EAD /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A469EBCC2186EAA900174EAD /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A469EBD22186EBF200174EAD /* DDYCamera.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DDYCamera.bundle; sourceTree = "<group>"; };
+		A469EBD32186EBF200174EAD /* DDYCameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDYCameraController.h; sourceTree = "<group>"; };
+		A469EBD42186EBF200174EAD /* DDYCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDYCameraController.m; sourceTree = "<group>"; };
+		A469EBD52186EBF200174EAD /* DDYCameraManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDYCameraManager.h; sourceTree = "<group>"; };
+		A469EBD62186EBF200174EAD /* DDYCameraManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDYCameraManager.m; sourceTree = "<group>"; };
+		A469EBDA2186F43600174EAD /* DDYCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDYCameraView.m; sourceTree = "<group>"; };
+		A469EBDB2186F43600174EAD /* DDYCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDYCameraView.h; sourceTree = "<group>"; };
+		A469EBE02187E98400174EAD /* NSBundle+DDYCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+DDYCamera.h"; sourceTree = "<group>"; };
+		A469EBE12187E98400174EAD /* NSBundle+DDYCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+DDYCamera.m"; sourceTree = "<group>"; };
+		A469EBE32187F16900174EAD /* DDYVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDYVideoPlayer.m; sourceTree = "<group>"; };
+		A469EBE42187F16900174EAD /* DDYVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDYVideoPlayer.h; sourceTree = "<group>"; };
+		A469EBE62187F60F00174EAD /* DDYCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDYCamera.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A469EBAB2186E73200174EAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A469EBA52186E73200174EAD = {
+			isa = PBXGroup;
+			children = (
+				A469EBC42186EAA900174EAD /* DDYCameraExample */,
+				A469EBB02186E73200174EAD /* DDYCamera */,
+				A469EBAF2186E73200174EAD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A469EBAF2186E73200174EAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A469EBAE2186E73200174EAD /* DDYCamera.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A469EBB02186E73200174EAD /* DDYCamera */ = {
+			isa = PBXGroup;
+			children = (
+				A469EBD22186EBF200174EAD /* DDYCamera.bundle */,
+				A469EBD32186EBF200174EAD /* DDYCameraController.h */,
+				A469EBD42186EBF200174EAD /* DDYCameraController.m */,
+				A469EBDB2186F43600174EAD /* DDYCameraView.h */,
+				A469EBDA2186F43600174EAD /* DDYCameraView.m */,
+				A469EBD52186EBF200174EAD /* DDYCameraManager.h */,
+				A469EBD62186EBF200174EAD /* DDYCameraManager.m */,
+				A469EBE02187E98400174EAD /* NSBundle+DDYCamera.h */,
+				A469EBE12187E98400174EAD /* NSBundle+DDYCamera.m */,
+				A469EBE62187F60F00174EAD /* DDYCamera.h */,
+			);
+			path = DDYCamera;
+			sourceTree = "<group>";
+		};
+		A469EBC42186EAA900174EAD /* DDYCameraExample */ = {
+			isa = PBXGroup;
+			children = (
+				A469EBC52186EAA900174EAD /* AppDelegate.h */,
+				A469EBC62186EAA900174EAD /* AppDelegate.m */,
+				A469EBC72186EAA900174EAD /* LaunchScreen.storyboard */,
+				A469EBC92186EAA900174EAD /* Info.plist */,
+				A469EBCA2186EAA900174EAD /* main.m */,
+				A469EBCB2186EAA900174EAD /* ViewController.h */,
+				A469EBCC2186EAA900174EAD /* ViewController.m */,
+				A469EBE42187F16900174EAD /* DDYVideoPlayer.h */,
+				A469EBE32187F16900174EAD /* DDYVideoPlayer.m */,
+			);
+			path = DDYCameraExample;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A469EBAD2186E73200174EAD /* DDYCamera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A469EBC12186E73C00174EAD /* Build configuration list for PBXNativeTarget "DDYCamera" */;
+			buildPhases = (
+				A469EBAA2186E73200174EAD /* Sources */,
+				A469EBAB2186E73200174EAD /* Frameworks */,
+				A469EBAC2186E73200174EAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DDYCamera;
+			productName = DDYCamera;
+			productReference = A469EBAE2186E73200174EAD /* DDYCamera.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A469EBA62186E73200174EAD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = com.smartmesh;
+				TargetAttributes = {
+					A469EBAD2186E73200174EAD = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = A469EBA92186E73200174EAD /* Build configuration list for PBXProject "DDYCamera" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A469EBA52186E73200174EAD;
+			productRefGroup = A469EBAF2186E73200174EAD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A469EBAD2186E73200174EAD /* DDYCamera */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A469EBAC2186E73200174EAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A469EBCF2186EAA900174EAD /* Info.plist in Resources */,
+				A469EBD72186EBF200174EAD /* DDYCamera.bundle in Resources */,
+				A469EBCE2186EAA900174EAD /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A469EBAA2186E73200174EAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A469EBE52187F16900174EAD /* DDYVideoPlayer.m in Sources */,
+				A469EBD92186EBF200174EAD /* DDYCameraManager.m in Sources */,
+				A469EBD12186EAA900174EAD /* ViewController.m in Sources */,
+				A469EBD02186EAA900174EAD /* main.m in Sources */,
+				A469EBDC2186F43600174EAD /* DDYCameraView.m in Sources */,
+				A469EBD82186EBF200174EAD /* DDYCameraController.m in Sources */,
+				A469EBCD2186EAA900174EAD /* AppDelegate.m in Sources */,
+				A469EBE22187E98400174EAD /* NSBundle+DDYCamera.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A469EBC72186EAA900174EAD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A469EBC82186EAA900174EAD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A469EBBF2186E73C00174EAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A469EBC02186E73C00174EAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A469EBC22186E73C00174EAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 23JJ7VRKJT;
+				INFOPLIST_FILE = "$(SRCROOT)/DDYCameraExample/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.smartmesh.smart2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A469EBC32186E73C00174EAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 23JJ7VRKJT;
+				INFOPLIST_FILE = "$(SRCROOT)/DDYCameraExample/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.smartmesh.smart2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A469EBA92186E73200174EAD /* Build configuration list for PBXProject "DDYCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A469EBBF2186E73C00174EAD /* Debug */,
+				A469EBC02186E73C00174EAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A469EBC12186E73C00174EAD /* Build configuration list for PBXNativeTarget "DDYCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A469EBC22186E73C00174EAD /* Debug */,
+				A469EBC32186E73C00174EAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A469EBA62186E73200174EAD /* Project object */;
+}
