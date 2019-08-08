@@ -272,7 +272,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
 - (AVAssetWriter *)assetWriter {
     if (!_assetWriter) {
         // 初始化写入媒体类型为MP4类型
-        _assetWriter = [AVAssetWriter assetWriterWithURL:self.videoURL fileType:AVFileTypeMPEG4 error:nil];
+        _assetWriter = [AVAssetWriter assetWriterWithURL:self.videoURL fileType:self.videoType error:nil];
         // 使其更适合在网络上播放
         _assetWriter.shouldOptimizeForNetworkUse = YES;
         // 添加视屏资源输入
