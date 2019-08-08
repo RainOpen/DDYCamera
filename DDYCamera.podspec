@@ -1,6 +1,6 @@
 Pod::Spec.new do |ddyspec|
     ddyspec.name         = 'DDYCamera'
-    ddyspec.version      = '1.0.0'
+    ddyspec.version      = '1.1.1'
     ddyspec.summary      = '相机的封装，能够拍摄图片和录制视频，可以利用现成的控制器，也可以用DDYCameraManager加自定义UI'
     ddyspec.homepage     = 'https://github.com/RainOpen/DDYCamera'
     ddyspec.license      = 'MIT'
@@ -10,4 +10,5 @@ Pod::Spec.new do |ddyspec|
     ddyspec.source_files = 'DDYCamera/DDYCamera/*.{h,m}'
     ddyspec.resource     = 'DDYCamera/DDYCamera/DDYCamera.bundle'
     ddyspec.requires_arc = false
+    ddyspec.frameworks = "UIKit", "AVFoundation"
 end
