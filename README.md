@@ -9,7 +9,7 @@
 
 * CocoaPods方式 
 
-  1.pod 'DDYCamera', '~> 1.0.0' 
+  1.pod 'DDYCamera', '~> 1.1.1' 
  
   2.#import <DDYCamera.h>
 
