@@ -156,7 +156,7 @@
     self.durationLabel.hidden = !self.isRecording;
     self.shapeLayer.transform = CATransform3DMakeScale(1.3, 1.3, 1);
     self.progressLayer.transform = CATransform3DMakeScale(1.3, 1.3, 1);
-    __block NSInteger recordSeconds = 0.;
+    __block int recordSeconds = 0;
     self.recordTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
     dispatch_source_set_timer(self.recordTimer, dispatch_walltime(NULL, 0), 0.1 * NSEC_PER_SEC, 0);
     dispatch_source_set_event_handler(self.recordTimer, ^{
@@ -165,7 +165,7 @@
                 [self stopRecord];
             } else {
                 recordSeconds ++;
-                self.durationLabel.text = [NSString stringWithFormat:@"%lds", recordSeconds/10];
+                self.durationLabel.text = [NSString stringWithFormat:@"%ds", recordSeconds/10];
                 self.progressLayer.strokeEnd = recordSeconds/100.f;
             } 
         });
