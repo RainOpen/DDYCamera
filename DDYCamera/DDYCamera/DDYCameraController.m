@@ -1,19 +1,27 @@
+/// MARK: - DDYAuthManager 2018/10/30
+/// !!!: Author: 豆电雨
+/// !!!: QQ/WX:  634778311
+/// !!!: Github: https://github.com/RainOpen/
+/// !!!: Blog:   https://juejin.im/user/57dddcd8128fe10064cadee9
+/// MARK: - DDYCameraController.m
+
 #import "DDYCameraController.h"
 #import "DDYCameraManager.h"
 #import "DDYCameraView.h"
 
 @interface DDYCameraController ()
-
+/// 相机管理器实例
 @property (nonatomic, strong) DDYCameraManager *cameraManager;
-
+/// 相机预览视图
 @property (nonatomic, strong) DDYCameraView *cameraView;
-
+/// 状态栏是否隐藏控制
 @property (nonatomic, assign) BOOL statusBarHidden;
 
 @end
 
 @implementation DDYCameraController
 
+///MARK: - 生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor blackColor]];
@@ -48,20 +56,20 @@
     [self hiddenStatusBar:NO];
 }
 
-#pragma mark - UI事件响应
-#pragma mark 返回
+// MARK: - UI事件响应
+// MARK: 返回
 - (void)handleBack {
     if (![self.navigationController popViewControllerAnimated:YES]) {
         [self dismissViewControllerAnimated:YES completion:^{ }];
     }
 }
 
-#pragma mark 曝光模式
+// MARK: 曝光模式
 - (void)handleTone:(BOOL)isOn {
     [self.cameraManager ddy_ISO:isOn];
 }
 
-#pragma mark 闪光灯模式
+// MARK: 闪光灯模式
 - (void)handleLight:(BOOL)isOn isRecording:(BOOL)isRecording {
     if (isRecording) {
          [self.cameraManager ddy_SetTorchMode:isOn ? AVCaptureTorchModeOn : AVCaptureTorchModeOff];
@@ -70,35 +78,35 @@
     }
 }
 
-#pragma mark 切换摄像头
+// MARK: 切换摄像头
 - (void)handleToggle {
     [self.cameraManager ddy_ToggleCamera];
 }
 
-#pragma mark 拍照
+// MARK: 拍照
 - (void)handleTake {
     [self.cameraManager ddy_TakePhotos];
 }
 
-#pragma mark 录制开始与结束
+// MARK: 录制开始与结束
 - (void)handleRecord:(BOOL)isStart {
     isStart ? [self.cameraManager ddy_StartRecorder] : [self.cameraManager ddy_StopRecorder];
 }
 
-#pragma mark 点击聚焦
+// MARK: 点击聚焦
 - (void)handleFocus:(CGPoint)point {
     [self.cameraManager ddy_FocusAtPoint:point];
 }
 
-#pragma mark - cameraManger 回调
-#pragma mark 拍照成功
+// MARK: - cameraManger 回调
+// MARK: 拍照成功
 - (void)handleTakeFinish:(UIImage *)image {
     if (image && self.takePhotoBlock) {
         self.takePhotoBlock(image, self);
     }
 }
 
-#pragma mark 录制成功
+// MARK: 录制成功
 - (void)handleRecordFinish:(NSURL *)videoURL {
     [self.cameraManager ddy_ResetRecorder];
     if (self.recordVideoBlock) {
@@ -106,7 +114,7 @@
     }
 }
 
-#pragma mark 光强检测
+// MARK: 光强检测
 - (void)handleBrightness:(CGFloat)brightnessValue {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (brightnessValue > 0 && self.cameraView.isShowToneButton) {
@@ -117,12 +125,12 @@
     });
 }
 
-#pragma mark - 状态栏显隐性
+// MARK: - 状态栏显隐性
 - (void)hiddenStatusBar:(BOOL)sender {
     _statusBarHidden = sender;
     [self setNeedsStatusBarAppearanceUpdate];
 }
-#pragma mark 显隐性
+// MARK: 显隐性
 - (BOOL)prefersStatusBarHidden {
     return _statusBarHidden;
 }

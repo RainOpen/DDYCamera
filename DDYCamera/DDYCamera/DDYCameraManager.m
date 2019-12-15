@@ -1,3 +1,10 @@
+/// MARK: - DDYAuthManager 2018/10/30
+/// !!!: Author: 豆电雨
+/// !!!: QQ/WX:  634778311
+/// !!!: Github: https://github.com/RainOpen/
+/// !!!: Blog:   https://juejin.im/user/57dddcd8128fe10064cadee9
+/// MARK: - DDYCameraManager.m
+
 #import "DDYCameraManager.h"
 
 #ifndef DDYScreenW
@@ -8,45 +15,45 @@
 #define DDYScreenH [UIScreen mainScreen].bounds.size.height
 #endif
 
-/** 更改属性 */
+/// 更改属性
 typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
 
 @interface DDYCameraManager ()<AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
-/** 串行队列 */
+/// 串行队列
 @property (nonatomic, strong) dispatch_queue_t cameraSerialQueue;
-/** 视频预览层 */
+/// 视频预览层
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
-/** 捕获会话 */
+/// 捕获会话
 @property (nonatomic, strong) AVCaptureSession *captureSession;
-/** 音频输入 */
+/// 音频输入
 @property (nonatomic, strong) AVCaptureDeviceInput *audioInput;
-/** 视频输入 */
+/// 视频输入
 @property (nonatomic, strong) AVCaptureDeviceInput *videoInput;
-/** 图片输出 */
+/// 图片输出
 @property (nonatomic, strong) AVCaptureStillImageOutput *imageOutput;
-/** 音频输出 */
+/// 音频输出
 @property (nonatomic, strong) AVCaptureAudioDataOutput *audioOutput;
-/** 视频输出 */
+/// 视频输出
 @property (nonatomic, strong) AVCaptureVideoDataOutput *videoOutput;
-/** 录制视屏的保存路径URL */
+/// 录制视屏的保存路径URL
 @property (nonatomic, strong) NSURL *videoURL;
-/** 资源写入 */
+/// 资源写入
 @property (nonatomic, strong) AVAssetWriter *assetWriter;
-/** 音频输出 */
+/// 音频输出
 @property (nonatomic, strong) AVAssetWriterInput *assetAudioInput;
-/** 视频输出 */
+/// 视频输出
 @property (nonatomic, strong) AVAssetWriterInput *assetVideoInput;
-/** 像素缓存适配器 */
+/// 像素缓存适配器
 @property (nonatomic, strong) AVAssetWriterInputPixelBufferAdaptor *pixelBufferAdaptor;
-/** 是否录制 */
+/// 是否录制
 @property (nonatomic, assign) BOOL isRecording;
 
 @end
 
 @implementation DDYCameraManager
 
-#pragma mark - 权限鉴定
-#pragma mark 相机使用权限鉴定 推荐使用DDYAuthManager统一管理
+// MARK: - 权限鉴定
+// MARK: 相机使用权限鉴定 推荐使用DDYAuthManager统一管理
 + (void)ddy_CameraAuthSuccess:(void (^)(void))success fail:(void (^)(void))fail {
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     switch (authStatus)
@@ -73,7 +80,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }
 }
 
-#pragma mark 麦克风使用权限鉴定 推荐使用DDYAuthManager统一管理
+// MARK: 麦克风使用权限鉴定 推荐使用DDYAuthManager统一管理
 + (void)ddy_MicrophoneAuthSuccess:(void (^)(void))success fail:(void (^)(void))fail {
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
     switch (authStatus)
@@ -100,7 +107,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }
 }
 
-#pragma mark - 懒加载
+// MARK: - 懒加载
 
 - (dispatch_queue_t)cameraSerialQueue {
     if (!_cameraSerialQueue) {
@@ -149,7 +156,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _captureSession;
 }
 
-#pragma mark 会话质量
+// MARK: 会话质量
 - (NSString *)sessionPreset {
     if (!_sessionPreset) {
         _sessionPreset = AVCaptureSessionPresetHigh;
@@ -157,7 +164,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _sessionPreset;
 }
 
-#pragma mark 音频输入
+// MARK: 音频输入
 - (AVCaptureDeviceInput *)audioInput {
     if (!_audioInput) {
         AVCaptureDevice *audioDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
@@ -166,7 +173,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _audioInput;
 }
 
-#pragma mark 视频输入
+// MARK: 视频输入
 - (AVCaptureDeviceInput *)videoInput {
     if (!_videoInput) {
         AVCaptureDevice *videoDevice = [self getCameraDeviceWithPosition:AVCaptureDevicePositionBack];
@@ -175,7 +182,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _videoInput;
 }
 
-#pragma mark 图片输出
+// MARK: 图片输出
 - (AVCaptureStillImageOutput *)imageOutput {
     if (!_imageOutput) {
         _imageOutput = [[AVCaptureStillImageOutput alloc] init];
@@ -184,7 +191,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _imageOutput;
 }
 
-#pragma mark 音频输出
+// MARK: 音频输出
 - (AVCaptureAudioDataOutput *)audioOutput {
     if (!_audioOutput) {
         _audioOutput = [[AVCaptureAudioDataOutput alloc] init];
@@ -193,7 +200,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _audioOutput;
 }
 
-#pragma mark 视频输出
+// MARK: 视频输出
 - (AVCaptureVideoDataOutput *)videoOutput {
     if (!_videoOutput) {
         _videoOutput = [[AVCaptureVideoDataOutput alloc] init];
@@ -203,7 +210,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _videoOutput;
 }
 
-#pragma mark 视屏格式
+// MARK: 视屏格式
 - (AVFileType)videoType {
     if (!_videoType) {
         _videoType = AVFileTypeMPEG4;
@@ -211,7 +218,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _videoType;
 }
 
-#pragma mark 视屏录制保存路径
+// MARK: 视屏录制保存路径
 - (NSURL *)videoURL {
     if (!_videoURL) {
 //        NSString *videoPath = [NSString stringWithFormat:@"%@%lf.mov",NSTemporaryDirectory(), ceil([[NSDate date] timeIntervalSince1970])];
@@ -224,7 +231,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _videoURL;
 }
 
-#pragma mark 视屏资源输入
+// MARK: 视屏资源输入
 - (AVAssetWriterInput *)assetVideoInput {
     if (!_assetVideoInput) {
         //写入视频大小
@@ -250,7 +257,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _assetVideoInput;
 }
 
-#pragma mark 音频资源输入
+// MARK: 音频资源输入
 - (AVAssetWriterInput *)assetAudioInput {
     if (!_assetAudioInput) {
         AudioChannelLayout acl;
@@ -268,7 +275,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return _assetAudioInput;
 }
 
-#pragma mark 资源写入
+// MARK: 资源写入
 - (AVAssetWriter *)assetWriter {
     if (!_assetWriter) {
         // 初始化写入媒体类型为MP4类型
@@ -299,21 +306,21 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return self;
 }
 
-#pragma mark 开启捕捉会话
+// MARK: 开启捕捉会话
 - (void)ddy_StartCaptureSession {
     if (!_captureSession.isRunning){
         [_captureSession startRunning];
     }
 }
 
-#pragma mark 停止捕捉会话
+// MARK: 停止捕捉会话
 - (void)ddy_StopCaptureSession {
     if (_captureSession.isRunning){
         [_captureSession stopRunning];
     }
 }
 
-#pragma mark 切换摄像头
+// MARK: 切换摄像头
 - (void)ddy_ToggleCamera {
     if ([[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count] > 1) {
         AVCaptureDevice *currentDevice = [self.videoInput device];
@@ -340,7 +347,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }
 }
 
-#pragma mark 设置闪光灯模式
+// MARK: 设置闪光灯模式
 - (void)ddy_SetFlashMode:(AVCaptureFlashMode)flashMode {
     __weak __typeof__ (self)weakSelf = self;
     [self changeDeviceProperty:^(AVCaptureDevice *captureDevice) {
@@ -355,7 +362,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }];
 }
 
-#pragma mark 设置补光模式
+// MARK: 设置补光模式
 - (void)ddy_SetTorchMode:(AVCaptureTorchMode)torchMode {
     __weak __typeof__ (self)weakSelf = self;
     [self changeDeviceProperty:^(AVCaptureDevice *captureDevice) {
@@ -370,7 +377,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }];
 }
 
-#pragma mark 光感系数
+// MARK: 光感系数
 - (void)ddy_ISO:(BOOL)isMAX {
     [self changeDeviceProperty:^(AVCaptureDevice *captureDevice) {
         CGFloat maxISO = captureDevice.activeFormat.maxISO;
@@ -378,7 +385,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }];
 }
 
-#pragma mark 聚焦/曝光
+// MARK: 聚焦/曝光
 - (void)ddy_FocusAtPoint:(CGPoint)point {
     CGPoint cameraPoint = [self.previewLayer captureDevicePointOfInterestForPoint:point];
     
@@ -398,7 +405,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }];
 }
 
-#pragma mark 焦距范围 0.0-1.0
+// MARK: 焦距范围 0.0-1.0
 - (void)ddy_ChangeFocus:(CGFloat)focus {
     [self changeDeviceProperty:^(AVCaptureDevice *captureDevice) {
         if ([captureDevice isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]) {
@@ -407,14 +414,14 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }];
 }
 
-#pragma mark 数码变焦 1-3倍
+// MARK: 数码变焦 1-3倍
 - (void)ddy_ChangeZoom:(CGFloat)zoom {
     [self changeDeviceProperty:^(AVCaptureDevice *captureDevice) {
         [captureDevice rampToVideoZoomFactor:zoom withRate:50];
     }];
 }
 
-#pragma mark 慢动作拍摄开关
+// MARK: 慢动作拍摄开关
 - (void)ddy_VideoSlow:(BOOL)isSlow {
     [self.captureSession stopRunning];
     CGFloat desiredFPS = isSlow ? 240. : 60.;
@@ -445,7 +452,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     [self.captureSession startRunning];
 }
 
-#pragma mark 防抖模式 AVCaptureVideoStabilizationModeCinematic AVCaptureVideoStabilizationModeOff
+// MARK: 防抖模式 AVCaptureVideoStabilizationModeCinematic AVCaptureVideoStabilizationModeOff
 - (void)ddy_VideoStabilizationMode:(AVCaptureVideoStabilizationMode)stabilizationMode {
     AVCaptureConnection *captureConnection = [self.videoOutput connectionWithMediaType:AVMediaTypeVideo];
     AVCaptureDevice *videoDevice = self.videoInput.device;
@@ -454,7 +461,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }
 }
 
-#pragma mark 拍照
+// MARK: 拍照
 - (void)ddy_TakePhotos {
     AVCaptureConnection *imageConnection = [self.imageOutput connectionWithMediaType:AVMediaTypeVideo];
     if (imageConnection.isVideoOrientationSupported) {
@@ -476,12 +483,12 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }];
 }
 
-#pragma mark 播放系统拍照声
+// MARK: 播放系统拍照声
 - (void)ddy_palySystemTakePhotoSound {
     AudioServicesPlaySystemSound(1108);
 }
 
-#pragma mark 录制重置
+// MARK: 录制重置
 - (void)ddy_ResetRecorder {
     _assetVideoInput = nil;
     _assetAudioInput = nil;
@@ -490,12 +497,12 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     _isRecording = NO;
 }
 
-#pragma mark 开始录制视频
+// MARK: 开始录制视频
 - (void)ddy_StartRecorder {
     self.isRecording = YES;
 }
 
-#pragma mark 结束录制视频
+// MARK: 结束录制视频
 - (void)ddy_StopRecorder {
     __weak __typeof__ (self)weakSelf = self;
     [self.assetWriter finishWritingWithCompletionHandler:^{
@@ -509,7 +516,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     self.isRecording = NO;
 }
 
-#pragma mark - Private methods
+// MARK: - Private methods
 - (AVCaptureDevice *)getCameraDeviceWithPosition:(AVCaptureDevicePosition)position {
     NSArray *devices = [NSArray array];
     if (@available(iOS 11.0, *)) {
@@ -525,7 +532,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     return nil;
 }
 
-#pragma mark 改变设备属性(闪光灯,手电筒,切换摄像头)
+// MARK: 改变设备属性(闪光灯,手电筒,切换摄像头)
 - (void)changeDeviceProperty:(PropertyChangeBlock)propertyChange {
     AVCaptureDevice *captureDevice = [self.videoInput device];
     // 注意改变设备属性前先加锁,调用完解锁
@@ -535,7 +542,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }
 }
 
-#pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
+// MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
     @autoreleasepool {
         // 录制

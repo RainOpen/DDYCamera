@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A469EBCD2186EAA900174EAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBC62186EAA900174EAD /* AppDelegate.m */; };
 		A469EBCE2186EAA900174EAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A469EBC72186EAA900174EAD /* LaunchScreen.storyboard */; };
-		A469EBCF2186EAA900174EAD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A469EBC92186EAA900174EAD /* Info.plist */; };
+		A469EBCF2186EAA900174EAD /* DDYCameraInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = A469EBC92186EAA900174EAD /* DDYCameraInfo.plist */; };
 		A469EBD02186EAA900174EAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBCA2186EAA900174EAD /* main.m */; };
 		A469EBD12186EAA900174EAD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A469EBCC2186EAA900174EAD /* ViewController.m */; };
 		A469EBD72186EBF200174EAD /* DDYCamera.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A469EBD22186EBF200174EAD /* DDYCamera.bundle */; };
@@ -25,7 +25,7 @@
 		A469EBC52186EAA900174EAD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A469EBC62186EAA900174EAD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A469EBC82186EAA900174EAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A469EBC92186EAA900174EAD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A469EBC92186EAA900174EAD /* DDYCameraInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DDYCameraInfo.plist; sourceTree = "<group>"; };
 		A469EBCA2186EAA900174EAD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A469EBCB2186EAA900174EAD /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A469EBCC2186EAA900174EAD /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 				A469EBC52186EAA900174EAD /* AppDelegate.h */,
 				A469EBC62186EAA900174EAD /* AppDelegate.m */,
 				A469EBC72186EAA900174EAD /* LaunchScreen.storyboard */,
-				A469EBC92186EAA900174EAD /* Info.plist */,
+				A469EBC92186EAA900174EAD /* DDYCameraInfo.plist */,
 				A469EBCA2186EAA900174EAD /* main.m */,
 				A469EBCB2186EAA900174EAD /* ViewController.h */,
 				A469EBCC2186EAA900174EAD /* ViewController.m */,
@@ -161,7 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A469EBCF2186EAA900174EAD /* Info.plist in Resources */,
+				A469EBCF2186EAA900174EAD /* DDYCameraInfo.plist in Resources */,
 				A469EBD72186EBF200174EAD /* DDYCamera.bundle in Resources */,
 				A469EBCE2186EAA900174EAD /* LaunchScreen.storyboard in Resources */,
 			);
@@ -314,7 +314,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X634X4Y33S;
-				INFOPLIST_FILE = "$(SRCROOT)/DDYCameraExample/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/DDYCameraExample/DDYCameraInfo.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -331,7 +331,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X634X4Y33S;
-				INFOPLIST_FILE = "$(SRCROOT)/DDYCameraExample/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/DDYCameraExample/DDYCameraInfo.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

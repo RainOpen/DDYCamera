@@ -1,28 +1,35 @@
+/// MARK: - DDYAuthManager 2018/10/30
+/// !!!: Author: 豆电雨
+/// !!!: QQ/WX:  634778311
+/// !!!: Github: https://github.com/RainOpen/
+/// !!!: Blog:   https://juejin.im/user/57dddcd8128fe10064cadee9
+/// MARK: - DDYCameraView.m
+
 #import "DDYCameraView.h"
 #import "NSBundle+DDYCamera.h"
 
 @interface DDYCameraView ()
-/** 返回按钮 */
+/// 返回按钮
 @property (nonatomic, strong) UIButton *backButton;
-/** 改变色调按钮 */
+/// 改变色调按钮
 @property (nonatomic, strong) UIButton *toneButton;
-/** 闪光灯/补光灯按钮 */
+/// 闪光灯/补光灯按钮
 @property (nonatomic, strong) UIButton *lightButton;
-/** 切换前后摄像头按钮 */
+/// 切换前后摄像头按钮
 @property (nonatomic, strong) UIButton *toggleButton;
-/** 拍照录制按钮 */
+/// 拍照录制按钮
 @property (nonatomic, strong) UIButton *takeButton;
-/** 进度layer */
+/// 进度layer
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
-/** 背景layer */
+/// 背景layer
 @property (nonatomic, strong) CAShapeLayer *shapeLayer;
-/** 定时器 */
+/// 定时器
 @property (nonatomic, strong) dispatch_source_t recordTimer;
-/** 是否录制 */
+/// 是否录制
 @property (nonatomic, assign) BOOL isRecording;
-/** 聚焦框 */
+/// 聚焦框
 @property (nonatomic, strong) UIImageView *focusCursor;
-/** 录制时长 */
+/// 录制时长
 @property (nonatomic, strong) UILabel *durationLabel;
 
 @end
@@ -31,13 +38,14 @@
 
 - (UIButton *)btnImg:(NSString *)img imgS:(NSString *)imgS sel:(SEL)sel {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    if (img) [button setImage:[NSBundle ddyImage:img] forState:UIControlStateNormal];
-    if (imgS) [button setImage:[NSBundle ddyImage:imgS] forState:UIControlStateSelected];
+    if (img) [button setImage:[NSBundle ddyCameraBundleImage:img] forState:UIControlStateNormal];
+    if (imgS) [button setImage:[NSBundle ddyCameraBundleImage:imgS] forState:UIControlStateSelected];
     [button addTarget:self action:sel forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
     return button;
 }
-
+// MARK: - Getter/Setter
+// MARK: 返回按钮懒加载初始化
 - (UIButton *)backButton {
     if (!_backButton) {
         _backButton = [self btnImg:@"back" imgS:nil sel:@selector(handleBack:)];
@@ -45,6 +53,7 @@
     return _backButton;
 }
 
+// MARK: 改变色调按钮懒加载初始化
 - (UIButton *)toneButton {
     if (!_toneButton) {
         _toneButton = [self btnImg:@"toneN" imgS:@"toneS" sel:@selector(handleTone:)];
@@ -53,6 +62,7 @@
     return _toneButton;
 }
 
+// MARK: 闪光灯/补光灯按钮懒加载初始化
 - (UIButton *)lightButton {
     if (!_lightButton) {
         _lightButton = [self btnImg:@"lightN" imgS:@"lightS" sel:@selector(handleLight:)];
@@ -60,6 +70,7 @@
     return _lightButton;
 }
 
+// MARK: 切换前后摄像头按钮懒加载初始化
 - (UIButton *)toggleButton {
     if (!_toggleButton) {
         _toggleButton = [self btnImg:@"toggle" imgS:nil sel:@selector(handleToggle:)];
@@ -67,6 +78,7 @@
     return _toggleButton;
 }
 
+// MARK: 拍照录制按钮懒加载初始化
 - (UIButton *)takeButton {
     if (!_takeButton) {
         _takeButton = [self btnImg:nil imgS:nil sel:@selector(handleTake:)];
@@ -75,15 +87,17 @@
     return _takeButton;
 }
 
+// MARK:  聚焦框懒加载初始化
 - (UIImageView *)focusCursor {
     if (!_focusCursor) {
-        _focusCursor = [[UIImageView alloc] initWithImage:[NSBundle ddyImage:@"focus"]];
+        _focusCursor = [[UIImageView alloc] initWithImage:[NSBundle ddyCameraBundleImage:@"focus"]];
         _focusCursor.alpha = 0;
         [self addSubview:_focusCursor];
     }
     return _focusCursor;
 }
 
+// MARK: 录制时长懒加载初始化
 - (UILabel *)durationLabel {
     if (!_durationLabel) {
         _durationLabel = [[UILabel alloc] init];
@@ -96,6 +110,7 @@
     return _durationLabel;
 }
 
+// MARK: - 初始化
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backButton.frame = CGRectMake(12, 12, 30, 30);
@@ -111,7 +126,7 @@
     return self;
 }
 
-#pragma mark 添加手势
+// MARK: 添加手势
 - (void)addGenstureRecognizer {
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SingleTap:)];
     singleTap.numberOfTapsRequired = 1;
@@ -122,6 +137,7 @@
     [singleTap requireGestureRecognizerToFail:doubleTap];
 }
 
+// MARK: 添加自定义layer
 - (void)addShapeLayer {
     CGRect rect = self.takeButton.bounds;
     CGFloat radius = rect.size.width/2.;
@@ -147,6 +163,7 @@
     [self.takeButton.layer addSublayer:self.progressLayer];
 }
 
+// MARK: 开始录制
 - (void)startRecord {
     self.isRecording = YES;
     
@@ -179,6 +196,7 @@
     dispatch_resume(self.recordTimer);
 }
 
+// MARK: 结束录制
 - (void)stopRecord {
     if (self.isRecording) {
         dispatch_source_cancel(self.recordTimer);
@@ -190,32 +208,32 @@
     }
 }
 
-#pragma mark - 事件处理
-#pragma mark 返回
+// MARK: - 事件处理
+// MARK: 返回
 - (void)handleBack:(UIButton *)sender {
     if (self.backBlock) self.backBlock();
 }
 
-#pragma mark 曝光模式
+// MARK: 曝光模式
 - (void)handleTone:(UIButton *)sender {
     if (self.toneBlock) self.toneBlock((sender.selected = !sender.selected));
 }
-#pragma mark 切换摄像头
+// MARK: 切换摄像头
 - (void)handleToggle:(UIButton *)sender {
     if (self.toggleBlock) self.toggleBlock();
 }
 
-#pragma mark 切换闪光灯模式
+// MARK: 切换闪光灯模式
 - (void)handleLight:(UIButton *)sender {
     if (self.lightBlock) self.lightBlock(self.isRecording, (sender.selected = !sender.selected));
 }
 
-#pragma mark 拍照
+// MARK: 拍照
 - (void)handleTake:(UIButton *)sender {
     if (self.takeBlock) self.takeBlock();
 }
 
-#pragma mark 长按录制与结束
+// MARK: 长按录制与结束
 - (void)handleLongPress:(UILongPressGestureRecognizer *)longP {
     if (longP.state == UIGestureRecognizerStateBegan) {
         [self startRecord];
@@ -224,7 +242,7 @@
     }
 }
 
-#pragma mark 单击聚焦
+// MARK: 单击聚焦
 - (void)SingleTap:(UITapGestureRecognizer*)recognizer {
     CGPoint point= [recognizer locationInView:self];
     if (self.focusBlock) self.focusBlock(point);
@@ -246,18 +264,18 @@
     }];
 }
 
-#pragma mark 双击切换摄像头
+// MARK: 双击切换摄像头
 - (void)DoubleTap:(UITapGestureRecognizer*)recognizer {
     if (self.toggleBlock) self.toggleBlock();
 }
 
-#pragma mark 是否显示调整曝光度的按钮
+// MARK: 是否显示调整曝光度的按钮
 - (void)setIsShowToneButton:(BOOL)isShowToneButton {
     _isShowToneButton = isShowToneButton;
     self.toneButton.hidden = !_isShowToneButton;
 }
 
-#pragma mark 录制完重置view
+// MARK: 录制完重置view
 - (void)ddy_ResetRecordView {
     self.isRecording = NO;
     self.shapeLayer.transform = CATransform3DIdentity;
