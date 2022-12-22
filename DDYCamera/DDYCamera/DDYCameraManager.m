@@ -128,6 +128,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
 - (AVCaptureSession *)captureSession {
     if (!_captureSession) {
         _captureSession = [[AVCaptureSession alloc] init];
+        _captureSession.usesApplicationAudioSession = NO;
         // 会话质量
         if ([_captureSession canSetSessionPreset:self.sessionPreset]) {
             [_captureSession setSessionPreset:self.sessionPreset];
@@ -330,7 +331,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
         AVCaptureDevicePosition toChangePosition = toChangeBack ? AVCaptureDevicePositionBack : AVCaptureDevicePositionFront;
         AVCaptureDevice *toChangeDevice = [self getCameraDeviceWithPosition:toChangePosition];
         // 获得要调整的设备输入对象
-        AVCaptureDeviceInput *toChangeDeviceInput = [[AVCaptureDeviceInput alloc]initWithDevice:toChangeDevice error:nil];
+        AVCaptureDeviceInput *toChangeDeviceInput = [[AVCaptureDeviceInput alloc]initWithDevice:toChangeDevice error:nil]; // [AVCaptureDeviceInput deviceInputWithDevice:toChangeDevice error:nil];
         // 改变会话的配置前一定要先开启配置，配置完成后提交配置改变
         [self.captureSession beginConfiguration];
         // 移除原有输入对象
@@ -450,6 +451,15 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
         }
     }
     [self.captureSession startRunning];
+}
+
+- (void)ddy_videoMirror {
+    // 前置摄像头采集出来的图像是反转的
+    AVCaptureDevicePosition currentPosition = [self.videoInput device].position;
+    AVCaptureConnection *captureConnection = [self.videoOutput connectionWithMediaType:AVMediaTypeVideo];
+    if (currentPosition == AVCaptureDevicePositionFront && captureConnection.supportsVideoMirroring) {
+        captureConnection.videoMirrored = YES;
+    }
 }
 
 // MARK: 防抖模式 AVCaptureVideoStabilizationModeCinematic AVCaptureVideoStabilizationModeOff
